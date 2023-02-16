@@ -59,7 +59,7 @@ class Actions:
         Actions.aboutFrame3.pack(
             pady=20, padx=60, expand=False, anchor="center")
 
-        imagen = Image.open("1.jpg")
+        imagen = Image.open("friends.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -68,7 +68,7 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("2.jpg")
+        imagen = Image.open("viajes.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -77,7 +77,7 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="right")
 
-        imagen = Image.open("3.jpg")
+        imagen = Image.open("dep.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -86,7 +86,7 @@ class Actions:
             Actions.picFrame2, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("4.jpg")
+        imagen = Image.open("mic.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -115,8 +115,8 @@ class Actions:
         Actions.aboutFrame3.pack(
             pady=20, padx=60, expand=False, anchor="center")
 
-        imagen = Image.open("1.jpg")
-        nuevo_tamano = (600, 400)
+        imagen = Image.open("lol.jpg")
+        nuevo_tamano = (500, 300)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
 
@@ -124,8 +124,8 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("2.jpg")
-        nuevo_tamano = (600, 400)
+        imagen = Image.open("arch.jpg")
+        nuevo_tamano = (300, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
 
@@ -133,8 +133,8 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="right")
 
-        imagen = Image.open("3.jpg")
-        nuevo_tamano = (600, 400)
+        imagen = Image.open("serv.jpg")
+        nuevo_tamano = (300, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
 
@@ -142,8 +142,8 @@ class Actions:
             Actions.picFrame2, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("4.jpg")
-        nuevo_tamano = (600, 400)
+        imagen = Image.open("bat.jpg")
+        nuevo_tamano = (300, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
 
@@ -160,23 +160,6 @@ class Actions:
         Actions.aboutFrame.pack_forget()
         Actions.aboutFrame2.pack_forget()
 
-
-    def destroy():
-        for widget in Actions.picFrame.winfo_children():
-            widget.destroy()
-        for widget in Actions.picFrame2.winfo_children():
-            widget.destroy()
-        for widget in Actions.aboutFrame.winfo_children():
-            widget.destroy()
-        for widget in Actions.aboutFrame2.winfo_children():
-            widget.destroy()
-        for widget in Actions.aboutFrame3.winfo_children():
-            widget.destroy()
-        for widget in Actions.indexFrame.winfo_children():
-            widget.destroy()
-        for widget in Actions.indexFrame2.winfo_children():
-            widget.destroy()
-
     def hobbies():
         Actions.destroy()
 
@@ -187,7 +170,7 @@ class Actions:
         Actions.aboutFrame3.pack(
             pady=20, padx=60, expand=False, anchor="center")
 
-        imagen = Image.open("1.jpg")
+        imagen = Image.open("dev.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -196,7 +179,7 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("2.jpg")
+        imagen = Image.open("dog.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -205,7 +188,7 @@ class Actions:
             Actions.picFrame, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="right")
 
-        imagen = Image.open("3.jpg")
+        imagen = Image.open("valo.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -214,7 +197,7 @@ class Actions:
             Actions.picFrame2, image=imagen_tk, text="")
         label.pack(pady=10, padx=10,side="left")
 
-        imagen = Image.open("4.jpg")
+        imagen = Image.open("gym.jpg")
         nuevo_tamano = (600, 400)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
@@ -268,8 +251,8 @@ class Actions:
         Actions.aboutFrame2.pack(
             pady=20, padx=60, expand=True, anchor="center")
 
-        imagen = Image.open("1.jpg")
-        nuevo_tamano = (800, 600)
+        imagen = Image.open("about.jpg")
+        nuevo_tamano = (600, 800)
         imagen = imagen.resize(nuevo_tamano)
         imagen_tk = ImageTk.PhotoImage(imagen)
 
