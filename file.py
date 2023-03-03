@@ -1,5 +1,4 @@
 from tkinter import ttk
-import tkinter.messagebox
 from tkinter.font import Font
 import customtkinter
 from PIL import Image, ImageTk
@@ -75,22 +74,32 @@ class Actions:
             pady=20, padx=60, expand=False, anchor="center")
         
         Actions.productsBox['columns'] = (
-            "Maestros","Materias","Check")
+            "Maestros",'Materias', 'Creditos', 'Grupos', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes',"Check")
         
         Actions.productsBox.column("#0", width=0)
         Actions.productsBox.column("Maestros", width=350)
         Actions.productsBox.column("Materias", width=450)
-        Actions.productsBox.column("Check", width=150)
+        Actions.productsBox.column("Creditos", width=100)
+        Actions.productsBox.column("Grupos", width=100)
+        Actions.productsBox.column("Lunes", width=100)
+        Actions.productsBox.column("Martes", width=100)
+        Actions.productsBox.column("Miercoles", width=100)
+        Actions.productsBox.column("Jueves", width=100)
+        Actions.productsBox.column("Viernes", width=100)
+        Actions.productsBox.column("Check", width=100)
 
 
         Actions.productsBox.heading("#0", text="")
         Actions.productsBox.heading("Maestros", text="Maestros")
         Actions.productsBox.heading("Materias", text="Materias")
-        Actions.productsBox.heading("Check", text="Chek")
-
-        # for row1 in sheet2.iter_rows(min_row=2, values_only=True):
-        #     print(row1)
-
+        Actions.productsBox.heading("Creditos", text="Creditos")
+        Actions.productsBox.heading("Grupos", text="Grupos")
+        Actions.productsBox.heading("Lunes", text="Lunes")
+        Actions.productsBox.heading("Martes", text="Martes")
+        Actions.productsBox.heading("Miercoles", text="Miercoes")
+        Actions.productsBox.heading("Jueves", text="Jueves")
+        Actions.productsBox.heading("Viernes", text="Viernes")
+        Actions.productsBox.heading("Check", text="Check")
 
         for row1 in sheet2.iter_rows(min_row=2, values_only=True):
             # obtener todos los datos de la segunda hoja y almacenarlos en una lista
@@ -101,9 +110,10 @@ class Actions:
             for val in random_row2:
                 # concatenar el valor de la primera fila con el valor aleatorio seleccionado de la segunda fila
                 # print("('"+row1[0]+"'"+","+"'"+val[0]+"')")
-                # value = row1[0]+","+val[0]
+                value = row1[0]+","+val[0]
+                # print(value)
                 Actions.productsBox.insert(
-                "", customtkinter.END, text="", values=(row1[0],val[0],"1"))
+                "", customtkinter.END, text="", values=(row1[0],val[0],val[1],val[2],val[3],val[4],val[5],val[6],val[7],"1"))
 
                 
 
