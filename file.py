@@ -101,7 +101,11 @@ class Actions:
         Actions.productsBox.heading("Viernes", text="Viernes")
         Actions.productsBox.heading("Check", text="Check")
 
-        for row1 in sheet2.iter_rows(min_row=2, values_only=True):
+        row2_list2 = list(sheet2.iter_rows(min_row=2, values_only=True))
+            # seleccionar aleatoriamente 5 elementos de la lista row2_list
+        
+        random_row22 = random.sample(row2_list2,60)
+        for row1 in random_row22:
             # obtener todos los datos de la segunda hoja y almacenarlos en una lista
             row2_list = list(sheet.iter_rows(min_row=2, values_only=True))
             # seleccionar aleatoriamente 5 elementos de la lista row2_list
@@ -117,7 +121,12 @@ class Actions:
 
                 
 
-
+        aboutButton2 = customtkinter.CTkButton(
+            Actions.aboutFrame3, width=300, height=50, command=lambda: Actions.Eliminar(), text="eliminar", font=Actions.btn_font)
+        aboutButton2.pack(pady=10, padx=10, side="right")
+        aboutButton2 = customtkinter.CTkButton(
+            Actions.aboutFrame3, width=300, height=50, command=lambda: Actions.Crear(), text="crear", font=Actions.btn_font)
+        aboutButton2.pack(pady=10, padx=10, side="right")
         aboutButton2 = customtkinter.CTkButton(
             Actions.aboutFrame3, width=300, height=50, command=lambda: Actions.menu(), text="regresar", font=Actions.btn_font)
         aboutButton2.pack(pady=10, padx=10, side="left")
@@ -127,6 +136,27 @@ class Actions:
         Actions.aboutFrame.pack_forget()
         Actions.aboutFrame2.pack_forget()
         Actions.indexFramePic.pack_forget()
+
+    def Eliminar():
+        for record in Actions.productsBox.get_children():
+            Actions.productsBox.delete(record)
+    def Crear():
+        row2_list2 = list(sheet2.iter_rows(min_row=2, values_only=True))
+            # seleccionar aleatoriamente 5 elementos de la lista row2_list
+        random_row22 = random.sample(row2_list2,60)
+        for row1 in random_row22:
+            # obtener todos los datos de la segunda hoja y almacenarlos en una lista
+            row2_list = list(sheet.iter_rows(min_row=2, values_only=True))
+            # seleccionar aleatoriamente 5 elementos de la lista row2_list
+            random_row2 = random.sample(row2_list, 5)
+            # iterar sobre los valores aleatorios seleccionados
+            for val in random_row2:
+                # concatenar el valor de la primera fila con el valor aleatorio seleccionado de la segunda fila
+                # print("('"+row1[0]+"'"+","+"'"+val[0]+"')")
+                value = row1[0]+","+val[0]
+                # print(value)
+                Actions.productsBox.insert(
+                "", customtkinter.END, text="", values=(row1[0],val[0],val[1],val[2],val[3],val[4],val[5],val[6],val[7],"1"))
 
     def Horarios():
         Actions.destroy()
