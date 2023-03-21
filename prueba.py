@@ -1,114 +1,216 @@
-import random
-from openpyxl import load_workbook
+# from tkinter import *
+# import tkinter.ttk as ttk
 
-# Cargar el archivo Excel
-workbookMaterias = load_workbook(filename='Boris.xlsx')
-sheetMaterias = workbookMaterias.active
+# root = Tk()
+# root.title('Codemy.com - Auto Select/Search')
+# root.geometry("1200x600")
 
-workbookMaestros = load_workbook(filename='Mestros.xlsx')
-sheetMaestros = workbookMaestros.active
+# def update(data):
+#     my_list.delete(*my_list.get_children())
 
-def Generar():
+#     for item in data:
+#         my_list.insert('', 'end', values=item)
+
+# def fillout(e):
+#     selected_item = my_list.focus()
+#     if selected_item:
+#         values = my_list.item(selected_item, 'values')
+#         my_entry.delete(0, END)
+#         my_entry.insert(0, values[0])
+
+# def check(e):
+#     # grab what was typed
+#     typed = my_entry.get()
+
+#     if typed == '':
+#         data = toppings
+#     else:
+#         data = []
+#         for item in toppings:
+#             if typed.lower() in item[0].lower():
+#                 data.append(item)
+
+#     update(data)                
+
+# my_label = Label(root, text="Start Typing...",
+#     font=("Helvetica", 14), fg="grey")
+
+# my_label.pack(pady=20)
+
+# my_entry = Entry(root, font=("Helvetica", 20))
+# my_entry.pack()
+
+# my_list = ttk.Treeview(root, columns=(
+#             "Maestros",'Materias', 'Creditos', 'Grupos', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes',"Check"),
+#             show='headings')
+# my_list.pack(pady=40)
+
+# toppings = [("Pepperoni","Cheese","4","2","yes","yes","no","yes","no",""),
+#             ("Peppers","Onions","2","1","no","yes","yes","no","no",""),
+#             ("Mushrooms","Ham","3","1","no","no","yes","yes","no",""),
+#             ("Taco","Peppers","5","2","yes","yes","yes","no","no",""),
+#             ("Pepperoni","Onions","3","1","no","yes","no","no","yes",""),
+#             ("Ham","Cheese","3","1","yes","no","yes","yes","no","")]
+
+# update(toppings)
+
+# for col in ("Maestros",'Materias', 'Creditos', 'Grupos', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes',"Check"):
+#     my_list.column(col, width=100, anchor="center")
+#     my_list.heading(col, text=col)
+
+# my_list.bind("<ButtonRelease-1>", fillout)
+# my_entry.bind("<KeyRelease>", check)
+
+# root.mainloop()
+
+from tkinter import *
+from tkinter import ttk
+from tkinter.messagebox import *
+from sqlite3 import *
+
+
+ws = Tk()                       
+ws.title("Python Guides")        
+ws.geometry("750x700+400+50")  
+ws.resizable(0, 0)            
+# view_window      
+
+
+
+conn = None
+
+conn = connect("data1.db")
+
+  
+curs = conn.cursor()
+
+
+db = "create table student(rno int primary key, name text)"
+curs.execute(db)
+
+
+if conn is not None:
+    conn.close()    
+
+
+
+conn = None
+
+
+conn = connect("data1.db")
+
+
+curs = conn.cursor()
+
+
+db1 = "insert into student values(1,'Pauline')"
+db2 = "insert into student values(2,'Dexter')"
+db3 = "insert into student values(3,'Melba')"
+db4 = "insert into student values(4,'Roxanne')"
+db5 = "insert into student values(5,'Mary')"
+db6 = "insert into student values(6,'Andrew')"
+db7 = "insert into student values(7,'Renata')"
+
+
+curs.execute(db1)
+curs.execute(db2)
+curs.execute(db3)
+curs.execute(db4)
+curs.execute(db5)
+curs.execute(db6)
+curs.execute(db7)
+
+
+conn.commit()
+
+
+if conn is not None:
+    conn.close()
+
+
+def show():
+    ws_ent.delete(0, END)     
+    ws_ent.focus()
+    treeview.selection()
+    conn = None
+    try:
+        conn = connect("data1.db")    
+        cursor = conn.cursor()
+        db = "select * from student"   
+        cursor.execute(db)
+
+        fetchdata = treeview.get_children()       
+        for elements in fetchdata:
+            treeview.delete(elements)
     
-        
-        maestros_list = list(sheetMaestros.iter_rows(min_row=2, values_only=True))
-        maestros = random.sample(maestros_list, 89)
 
-        materias_list = list(sheetMaterias.iter_rows(min_row=2, values_only=True))
+        data = cursor.fetchall()
+        for d in data:
+            treeview.insert("", END, values=d)
 
-        for maestro in maestros:
-            test1 = ""
-            test2 = ""
-            test3 = ""
-            test4 = ""
-            test5 = ""
-                
-            materias = random.sample(materias_list,5)
+        conn.commit()
+    except Exception as e:
+        showerror("Fail", e)
+        conn.rollback()
+    finally:
+        if conn is not None:
+            conn.close()
+def search():
+    treeview.selection()
+    fetchdata = treeview.get_children()
+    for f in fetchdata:
+        treeview.delete(f)
+    conn = None
+    try:
+        conn = connect("data1.db")
+        core = conn.cursor()
+        db = "select * from student where name = '%s' "
+        name = ws_ent.get()
+        if (len(name) < 2) or (not name.isalpha()):
+            showerror("fail", "invalid name")
+        else:
+            core.execute(db %(name))
+            data = core.fetchall()
+            for d in data:
+                treeview.insert("", END, values=d)
+            
+    except Exception as e:
+        showerror("issue", e)
 
-            for materia in materias:
-
-                if test1 == "":
-                    test1 = materia
-                    if(test1[3]==None):
-                        test1 = list(test1)
-                        test1[3] = "-"
-                        test1 = tuple(test1)
-                elif test2 == "":
-                    test2 = materia
-                    if(test2[3]==None):
-                        test2 = list(test2)
-                        test2[3] = "-"
-                        test2 = tuple(test2)
-                    if  test2[3] == test1[3] and test2[4] == test1[4] and test2[5] == test1[5] and test2[6] == test1[6] and test2[7] == test1[7]:
-                        print("son iguales")
-                        print(test1[3], test2[3], test1[4], test2[4], test1[5], test2[5], test1[6], test2[6], test1[7], test2[7])
-                        test1=""                  
-                        
-                    else:
-                        print("son diferentes N1")
-                elif test3 == "":
-                    test3 = materia
-                    if(test3[3]==None):
-                        test3 = list(test3)
-                        test3[3] = "-"
-                        test3 = tuple(test3)
-                    if test1[3] == test3[3] and test2[3] == test3[3] and test1[4] == test3[4] and test2[4] == test3[4] and test1[5] == test3[5] and test2[5] == test3[5] and test1[6] == test3[6] and test2[6] == test3[6] and test1[7] == test3[7] and test2[7] == test3[7]:
-                        print("son iguales")
-                        print(test1[3], test2[3], test3[3])
-                        test1=""
-                        test2=""
-                                
-                    else:
-                        print("son diferentes N3")
-                elif test4 == "":
-                    test4 = materia
-                    if(test4[3]==None):
-                        test4 = list(test4)
-                        test4[3] = "-"
-                        test4 = tuple(test4)
-                    if test1[3] == test4[3] and test2[3] == test4[3] and test3[3] == test4[3] and test1[4] == test4[4] and test2[4] == test4[4] and test3[4] == test4[4] and test1[5] == test4[5] and test2[5] == test4[5] and test3[5] == test4[5] and test1[6] == test4[6] and test2[6] == test4[6] and test3[6] == test4[6] and test1[7] == test4[7] and test2[7] == test4[7] and test3[7] == test4[7] :
-                        print("son iguales")
-                        print(test1[3], test2[3], test3[3], test4[3])
-                        test1=""
-                        test2=""
-                        test3=""
-
-                                
-                    else:
-                        print("son diferentes N3")
-                elif test5 == "":
-                    test5 = materia
-                    if(test5[3]==None):
-                        test5 = list(test5)
-                        test5[3] = "-"
-                        test5 = tuple(test5)
-                    if  test1[3] == test5[3] and test2[3] == test5[3] and test3[3] == test5[3] and test4[3] == test5[3] and test1[4] == test5[4] and test2[4] == test5[4] and test3[4] == test5[4] and test4[4] == test5[4] and test1[5] == test5[5] and test2[5] == test5[5] and test3[5] == test5[5] and test4[5] == test5[5] and test1[6] == test5[6] and test2[6] == test5[6] and test3[6] == test5[6] and test4[6] == test5[6] and test1[7] == test5[7] and test2[7] == test5[7] and test3[7] == test5[7] and test4[7] == test5[7]:
-                        print("son iguales")
-                        print(test1[3], test2[3], test3[3], test4[3], test5[3])
-                        test1=""
-                        test2=""
-                        test3=""
-                        test4=""
-                        test5=""
-                                
-                    else:
-                        print("son diferentes N4")
-        for val in sheetMaterias:
-            # print("----------\n"
-            #       +str(test1[3])+"--"+str(test1[4])+"--"+str(test1[5])+"--"+str(test1[6])+"--"+str(test1[7])+"\n"+
-            #       str(test2[3])+"--"+str(test2[4])+"--"+str(test2[5])+"--"+str(test2[6])+"--"+str(test2[7])+"\n"+
-            #       str(test3[3])+"--"+str(test3[4])+"--"+str(test3[5])+"--"+str(test3[6])+"--"+str(test3[7])+"\n"+
-            #       str(test4[3])+"--"+str(test4[4])+"--"+str(test4[5])+"--"+str(test4[6])+"--"+str(test4[7])+"\n"+
-            #       str(test5[3])+"--"+str(test5[4])+"--"+str(test5[5])+"--"+str(test5[6])+"--"+str(test5[7])+"\n")
-            print("------------------------------")
-            print(str(maestro[0]),str(test1[0]),str(test1[1]),str(test1[2]),str(test1[3]),str(test1[4]),str(test1[5]),str(test1[6]),str(test1[7])+"\n"+
-                  str(maestro[0]),str(test2[0]),str(test2[1]),str(test2[2]),str(test2[3]),str(test2[4]),str(test2[5]),str(test2[6]),str(test2[7])+"\n"+
-                  str(maestro[0]),str(test3[0]),str(test3[1]),str(test3[2]),str(test3[3]),str(test3[4]),str(test3[5]),str(test3[6]),str(test3[7])+"\n"+
-                  str(maestro[0]),str(test4[0]),str(test4[1]),str(test4[2]),str(test4[3]),str(test4[4]),str(test4[5]),str(test4[6]),str(test4[7])+"\n"+
-                  str(maestro[0]),str(test5[0]),str(test5[1]),str(test5[2]),str(test5[3]),str(test5[4]),str(test5[5]),str(test5[6]),str(test5[7])+"\n")
-            # break
-                    
-Generar()
+    finally:
+        if conn is not None:
+            conn.close()
+def reset():
+    show()  
 
 
 
+scrollbarx = Scrollbar(ws, orient=HORIZONTAL)  
+scrollbary = Scrollbar(ws, orient=VERTICAL)    
+treeview = ttk.Treeview(ws, columns=("rollno", "name"), show='headings', height=22)  
+treeview.pack()
+treeview.heading('rollno', text="Roll No", anchor=CENTER)
+treeview.column("rollno", stretch=NO, width = 100) 
+treeview.heading('name', text="Name", anchor=CENTER)
+treeview.column("name", stretch=NO)
+scrollbary.config(command=treeview.yview)
+scrollbary.place(x = 526, y = 7)
+scrollbarx.config(command=treeview.xview)
+scrollbarx.place(x = 220, y = 460)
+style = ttk.Style()
+style.theme_use("default")
+style.map("Treeview")
+
+
+ws_lbl = Label(ws, text = "Name", font=('calibri', 12, 'normal'))
+ws_lbl.place(x = 290, y = 518)
+ws_ent = Entry(ws,  width = 20, font=('Arial', 15, 'bold'))
+ws_ent.place(x = 220, y = 540)
+ws_btn1 = Button(ws, text = 'Search',  width = 8, font=('calibri', 12, 'normal'), command = search)
+ws_btn1.place(x = 480, y = 540)
+ws_btn2 = Button(ws, text = 'Reset',  width = 8, font=('calibri', 12, 'normal'), command = reset)
+ws_btn2.place(x = 600, y = 540)
+
+
+show()  
+ws.mainloop()

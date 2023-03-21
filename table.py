@@ -182,7 +182,7 @@ def Generar():
                     if  test1[3] == test5[3] or test2[3] == test5[3] or test3[3] == test5[3] or test4[3] == test5[3] or test1[4] == test5[4] or test2[4] == test5[4] or test3[4] == test5[4] or test4[4] == test5[4] or test1[5] == test5[5] or test2[5] == test5[5] or test3[5] == test5[5] or test4[5] == test5[5] or test1[6] == test5[6] or test2[6] == test5[6] or test3[6] == test5[6] or test4[6] == test5[6] or test1[7] == test5[7] or test2[7] == test5[7] or test3[7] == test5[7] or test4[7] == test5[7]:
                         print("son iguales")
                         print(test1[3], test2[3], test3[3], test4[3], test5[3])
-                        while test1[3] == test5[3] or test2[3] == test5[3] or test3[3] == test5[3] or test4[3] == test5[3] or test1[4] == test5[4] or test2[4] == test5[4] or test3[4] == test5[4] or test4[4] == test5[4] or test1[5] == test5[5] or test2[5] == test5[5] or test3[5] == test5[5] or test4[5] == test5[5] or test1[6] == test5[6] or test2[6] == test5[6] or test3[6] == test5[6] or test4[6] == test5[6] or test1[7] == test5[7] or test2[7] == test5[7] or test3[7] == test5[7] or test4[7] == test5[7]:
+                        while test1[3] == test5[3] or test2[3] == test5[3] or test3[3] == test5[3] or test4[3] == test5[3] or test1[4] == test5[4] or test2[4] == test5[4] or test3[4] == test5[4] or test4[4] == test5[4] or test1[5] == test5[5] or test2[5] == test5[5] or test3[5] == test5[5] or test4[5] == test5[5] or test1[6] == test5[6] or test2[6] == test5[6] or test3[6] == test5[6] or test4[6] == test5[6] or test1[7] == test5[7] or test2[7] == test5[7] or test3[7] == test5[7] or test4[7] == test5[7] or str(test1[3])[0].isdigit() and str(test2[3])[0].isdigit() and str(test3[3])[0].isdigit() and str(test4[3])[0].isdigit() and str(test5[3])[0].isdigit() or str(test1[4])[0].isdigit() and str(test2[4])[0].isdigit() and str(test3[4])[0].isdigit() and str(test4[4])[0].isdigit() and str(test5[4])[0].isdigit() or str(test1[5])[0].isdigit() and str(test2[5])[0].isdigit() and str(test3[5])[0].isdigit() and str(test4[5])[0].isdigit() and str(test5[5])[0].isdigit() or str(test1[6])[0].isdigit() and str(test2[6])[0].isdigit() and str(test3[6])[0].isdigit() and str(test4[6])[0].isdigit() and str(test5[6])[0].isdigit() or str(test1[7])[0].isdigit() and str(test2[7])[0].isdigit() and str(test3[7])[0].isdigit() and str(test4[7])[0].isdigit() and str(test5[7])[0].isdigit():
                             materia = random.sample(materias_list, k=1)[0]
                             test5 = materia
                             if  test1[3] == test5[3] or test2[3] == test5[3] or test3[3] == test5[3] or test4[3] == test5[3] or test1[4] == test5[4] or test2[4] == test5[4] or test3[4] == test5[4] or test4[4] == test5[4] or test1[5] == test5[5] or test2[5] == test5[5] or test3[5] == test5[5] or test4[5] == test5[5] or test1[6] == test5[6] or test2[6] == test5[6] or test3[6] == test5[6] or test4[6] == test5[6] or test1[7] == test5[7] or test2[7] == test5[7] or test3[7] == test5[7] or test4[7] == test5[7]:
@@ -215,6 +215,13 @@ def Generar():
                                 print("arreglado test5")
                                 print(test1[3], test2[3], test3[3], test4[3], test5[3])
                                 break
+                            if str(test1[3])[0].isdigit() and str(test2[3])[0].isdigit() and str(test3[3])[0].isdigit() and str(test4[3])[0].isdigit() and str(test5[3])[0].isdigit() or str(test1[4])[0].isdigit() and str(test2[4])[0].isdigit() and str(test3[4])[0].isdigit() and str(test4[4])[0].isdigit() and str(test5[4])[0].isdigit() or str(test1[5])[0].isdigit() and str(test2[5])[0].isdigit() and str(test3[5])[0].isdigit() and str(test4[5])[0].isdigit() and str(test5[5])[0].isdigit() or str(test1[6])[0].isdigit() and str(test2[6])[0].isdigit() and str(test3[6])[0].isdigit() and str(test4[6])[0].isdigit() and str(test5[6])[0].isdigit() or str(test1[7])[0].isdigit() and str(test2[7])[0].isdigit() and str(test3[7])[0].isdigit() and str(test4[7])[0].isdigit() and str(test5[7])[0].isdigit():
+                                print("10 horas por dia")
+                                materia = random.sample(materias_list, k=1)[0]
+                                test5 = materia
+                            else:
+                                print("menos de 10 horas por dia")
+
                                 
                     else:
                         print("son diferentes N4")
@@ -228,6 +235,3 @@ def Generar():
                     str(maestro[0]),str(test5[1]),str(test5[2]),str(test5[3]),str(test5[4]),str(test5[5]),str(test5[6]),str(test5[7])+"\n")
                 break
 Generar()
-
-
-
